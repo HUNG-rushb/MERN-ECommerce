@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Duy Hưng's MERN",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
