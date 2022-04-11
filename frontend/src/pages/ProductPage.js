@@ -25,7 +25,7 @@ const ProductPage = () => {
     };
 
     fetchProduct();
-  }, []);
+  }, [id]);
 
   return (
     <React.Fragment>

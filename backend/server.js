@@ -1,11 +1,14 @@
 const express = require("express");
-
+const cors = require("cors");
+const dotenv = require("dotenv");
 const products = require("./data/products");
 
 const app = express();
 
+// Enviroment Variable
+dotenv.config();
+
 // CORS
-const cors = require("cors");
 app.use(cors());
 // https://enable-cors.org/server_expressjs.html
 // app.use((req, res, next) => {
@@ -42,4 +45,5 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.listen(2611, console.log("Server on 2611"));
+const PORT = process.env.PORT || 2611;
+app.listen(PORT, console.log(`Server on ${PORT}`));
