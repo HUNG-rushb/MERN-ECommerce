@@ -1,0 +1,25 @@
+{
+  "name": "mern-ecommerce",
+  "version": "1.0.0",
+  "description": "Duy Hưng's MERN",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HUNG-rushb/MERN-ECommerce.git"
+  },
+  "author": "Trịnh Duy Hưng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HUNG-rushb/MERN-ECommerce/issues"
+  },
+  "homepage": "https://github.com/HUNG-rushb/MERN-ECommerce#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.4"
+  }
+}
