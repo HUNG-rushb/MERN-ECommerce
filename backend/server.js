@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import colors from "colors";
+
+import connectDB from "./config/db.js";
 import products from "./data/products.js";
 
 // const express = require("express");
@@ -8,6 +11,10 @@ import products from "./data/products.js";
 // const dotenv = require("dotenv");
 // const products = require("./data/products");
 
+// Mongoose
+connectDB();
+
+// Express
 const app = express();
 
 // Enviroment Variable
