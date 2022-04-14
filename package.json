@@ -31,7 +31,9 @@
     "express": "^4.17.3",
     "express-async-handler": "^1.2.0",
     "http-proxy-middleware": "^2.0.4",
-    "mongoose": "^6.2.10"
+    "mongoose": "^6.2.10",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

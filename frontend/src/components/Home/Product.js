@@ -17,11 +17,11 @@ const Product = ({ product }) => {
           </Card.Title>
         </Link>
 
-        <Card.Text as="div">
+        {/* <Card.Text as="div">
           <div className="my-3">
             {product.rating} from {product.numReviews} reviews
           </div>
-        </Card.Text>
+        </Card.Text> */}
 
         <Card.Text as="div">
           <Rating

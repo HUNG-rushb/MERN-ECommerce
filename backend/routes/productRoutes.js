@@ -4,7 +4,6 @@ import Product from "../models/ProductModel.js";
 
 const router = express.Router();
 
-//
 router.get(
   "/",
   expressAsyncHandler(async (req, res) => {

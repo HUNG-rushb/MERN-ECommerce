@@ -53,7 +53,7 @@ const productSchema = mongoose.Schema(
       default: 0,
     },
     reviews: [reviewSchema],
-    numsReview: {
+    numReviews: {
       type: Number,
       required: true,
       default: 0,
