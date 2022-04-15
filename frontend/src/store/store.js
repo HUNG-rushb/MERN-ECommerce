@@ -3,15 +3,29 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // Reducers
-import { productListReducer } from "../reducers/productReducer.js";
-import { productDetailsReducer } from "../reducers/productReducer.js";
+import {
+  productListReducer,
+  productDetailsReducer,
+} from "../reducers/productReducer.js";
+
+import { cartReducer } from "../reducers/cartReducer.js";
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cartReducer,
 });
 
-const initialState = {};
+// Get cart item from local storage
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromStorage,
+  },
+};
 
 const middleware = [thunk];
 

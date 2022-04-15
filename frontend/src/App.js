@@ -9,6 +9,7 @@ import Header from "./components/0. Layout/Header";
 // pages
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} exact />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/cart/:id" element={<CartPage />} exact />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </Container>
         </main>
