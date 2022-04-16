@@ -6,6 +6,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 // const express = require("express");
@@ -45,12 +46,17 @@ app.use(cors());
 //   })
 // );
 
+// JSON
+app.use(express.json());
+
 // API
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+// Routes
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 // Error
 app.use(notFound);
