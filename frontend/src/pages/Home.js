@@ -38,6 +38,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <h1>Latest Product</h1>
+
       {loading ? (
         <Loader />
       ) : error ? (
