@@ -13,6 +13,8 @@ const protect = expressAsyncHandler(async (req, res, next) => {
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
+
+      // Check Token
       const decoded = jsonwebtoken.verify(token, process.env.JWT_TOKEN);
       //   console.log(decoded);
 
