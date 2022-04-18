@@ -11,6 +11,7 @@ import { cartReducer } from "../reducers/cartReducer.js";
 import {
   userLoginReducer,
   userRegisterReducer,
+  userDetailsReducer,
 } from "../reducers/userReducer.js";
 
 const reducer = combineReducers({
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
 });
 
 // Get info from local storage
