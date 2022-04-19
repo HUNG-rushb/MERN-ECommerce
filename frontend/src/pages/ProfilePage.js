@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/0. Layout/Message.js";
 import Loader from "../components/0. Layout/Loader.js";
 
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,9 @@ const ProfilePage = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
@@ -44,6 +47,7 @@ const ProfilePage = () => {
     if (password !== confirmPassword) {
       setMesage("Passwords do not match lmao!");
     } else {
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -53,6 +57,7 @@ const ProfilePage = () => {
         <h2>User Profile</h2>
 
         {message && <Message variant="danger">{message}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         {error && <Message variant="danger">{error}</Message>}
 
         {loading && <Loader />}
