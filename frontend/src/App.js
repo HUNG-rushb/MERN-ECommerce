@@ -13,6 +13,8 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
+import ShippingPage from "./pages/ShippingPage";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   return (
@@ -32,8 +34,12 @@ function App() {
 
               <Route path="/product/:id" element={<ProductPage />} />
 
-              <Route path="/cart/:id" element={<CartPage />} exact />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/cart/:id" element={<CartPage />} exact />
+
+              <Route path="/shipping" element={<ShippingPage />} />
+
+              <Route path="/payment" element={<PaymentPage />} />
             </Routes>
           </Container>
         </main>

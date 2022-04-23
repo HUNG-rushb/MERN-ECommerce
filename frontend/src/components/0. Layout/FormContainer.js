@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 
-const LoginForm = (props) => {
+const FormContainer = (props) => {
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -12,4 +12,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+export default FormContainer;

@@ -30,7 +30,8 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      navigate(`/${redirect}`);
+      // navigate("/shipping");
     }
   }, [navigate, userInfo, redirect]);
 
@@ -69,7 +70,7 @@ const LoginPage = () => {
 
       <Row className="py-3">
         <Col>
-          New Customer?{" "}
+          New Customer?
           <Link
             // to={
             //   redirect
