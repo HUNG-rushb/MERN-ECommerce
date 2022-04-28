@@ -27,7 +27,7 @@ const addOrderedItems = expressAsyncHandler(async (req, res) => {
       totalPrice,
     });
 
-    const cratedOrder = await order.save();
+    const cratedOrder = await newOrder.save();
 
     res.status(201).json(cratedOrder);
   }

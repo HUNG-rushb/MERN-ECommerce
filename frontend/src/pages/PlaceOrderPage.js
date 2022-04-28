@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,12 +7,15 @@ import Message from "../components/0. Layout/Message.js";
 // import Loader from "../components/0. Layout/Loader.js";
 import CheckOutSteps from "../components/Checkout/CheckOutSteps.js";
 
+import { createOrder } from "../actions/orderActions.js";
+
 const addDecimals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
 
 const PlaceOrderPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const cart = useSelector((state) => state.cart);
 
@@ -31,7 +34,27 @@ const PlaceOrderPage = () => {
     Number(cart.taxPrice)
   ).toFixed(2);
 
-  const placeOrderHandler = () => {};
+  const { order, success, error } = useSelector((state) => state.orderCreate);
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+    }
+  }, [success]);
 
   return (
     <>
@@ -127,12 +150,18 @@ const PlaceOrderPage = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
+                {error && <Message variant="danger">{error}</Message>}
+              </ListGroup.Item>
+
+              <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn-block"
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
-                ></Button>
+                >
+                  Place Order
+                </Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>
