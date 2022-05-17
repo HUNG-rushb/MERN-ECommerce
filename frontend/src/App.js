@@ -17,6 +17,7 @@ import ShippingPage from "./pages/ShippingPage";
 import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
+import UserListPage from "./pages/UsersListPage";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
               <Route path="/placeorder" element={<PlaceOrderPage />} />
 
               <Route path="/order/:id" element={<OrderPage />} exact />
+
+              <Route path="/admin/userlist" element={<UserListPage />} />
             </Routes>
           </Container>
         </main>
