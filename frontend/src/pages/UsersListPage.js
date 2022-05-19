@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/0. Layout/Message.js";
 import Loader from "../components/0. Layout/Loader.js";
 
-import { listUsers } from "../actions/userActions.js";
+import { listUsers, deleteUser } from "../actions/userActions.js";
 
 const UsersListPage = () => {
   const dispatch = useDispatch();
 
   const { loading, error, users } = useSelector((state) => state.userList);
+  const { success: successDelete } = useSelector((state) => state.userDelete);
 
   useEffect(() => {
     dispatch(listUsers());

@@ -104,6 +104,18 @@ const getUsers = expressAsyncHandler(async (req, res) => {
   res.json(users);
 });
 
+const deleteUser = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    await user.remove();
+    res.json({ message: "User removed!" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 const getUserById = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
 
@@ -143,6 +155,7 @@ export {
   getUserProfile,
   updateUserProfile,
   getUsers,
+  deleteUser,
   getUserById,
   updateUser,
 };
