@@ -7,7 +7,9 @@ import Message from "../components/0. Layout/Message.js";
 import Loader from "../components/0. Layout/Loader.js";
 import LoginForm from "../components/Login/LoginForm.js";
 
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUser } from "../actions/userActions";
+
+import { USER_UPDATE_RESET } from "../constants/userConstants.js";
 
 const EditUserPage = () => {
   const dispatch = useDispatch();
@@ -21,19 +23,31 @@ const EditUserPage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const { loading, error, user } = useSelector((state) => state.userDetails);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = useSelector((state) => state.userUpdate);
 
   useEffect(() => {
-    if (!user.name || user._id !== userId) {
-      dispatch(getUserDetails(userId));
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
+      navigate("/admin/userlist");
     } else {
-      setName(user.name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
+      if (!user.name || user._id !== userId) {
+        dispatch(getUserDetails(userId));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+        setIsAdmin(user.isAdmin);
+      }
     }
-  }, [user, userId]);
+  }, [user, userId, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
 
   return (
@@ -44,6 +58,8 @@ const EditUserPage = () => {
 
       <LoginForm>
         <h1>Edit User</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 
         {loading ? (
           <Loader />
