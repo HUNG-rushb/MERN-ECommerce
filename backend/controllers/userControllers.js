@@ -99,11 +99,6 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
   }
 });
 
-const getUsers = expressAsyncHandler(async (req, res) => {
-  const users = await User.find({});
-  res.json(users);
-});
-
 const deleteUser = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -114,6 +109,11 @@ const deleteUser = expressAsyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("User not found");
   }
+});
+
+const getUsers = expressAsyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
 });
 
 const getUserById = expressAsyncHandler(async (req, res) => {

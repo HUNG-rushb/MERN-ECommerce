@@ -11,15 +11,25 @@ import { listUsers, deleteUser } from "../actions/userActions.js";
 
 const UsersListPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { loading, error, users } = useSelector((state) => state.userList);
+
+  const { userInfo } = useSelector((state) => state.userLogin);
+
   const { success: successDelete } = useSelector((state) => state.userDelete);
 
   useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listUsers());
+    } else {
+      navigate("/login");
+    }
+  }, [dispatch, successDelete]);
 
-  const deleteHandler = () => {};
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) dispatch(deleteUser(id));
+  };
 
   return (
     <>
@@ -67,7 +77,7 @@ const UsersListPage = () => {
                   <Button
                     variant="danger"
                     className="btn-sm"
-                    // onClick={() => deleteHandler(user._id)}
+                    onClick={() => deleteHandler(user._id)}
                   >
                     <i className="fas fa-trash" />
                   </Button>
