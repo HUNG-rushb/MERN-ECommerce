@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,7 +98,7 @@ const RegisterPage = () => {
 
       <Row className="py-3">
         <Col>
-          Already Have An Account?{" "}
+          Already Have An Account?
           <Link
             // to={
             //   redirect
