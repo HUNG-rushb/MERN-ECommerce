@@ -19,6 +19,7 @@ import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UsersListPage";
 import EditUserPage from "./pages/EditUserPage";
+import ProductListPage from "./pages/ProductListPage";
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
 
               <Route path="/admin/userlist" element={<UserListPage />} />
               <Route path="/admin/user/:id/edit" element={<EditUserPage />} />
+
+              <Route path="/admin/productlist" element={<ProductListPage />} />
             </Routes>
           </Container>
         </main>
