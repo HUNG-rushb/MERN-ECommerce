@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/0. Layout/Message.js";
 import Loader from "../components/0. Layout/Loader.js";
 
-import { listProducts } from "../actions/productActions.js";
+import { listProducts, deleteProduct } from "../actions/productActions.js";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,12 @@ const ProductListPage = () => {
     (state) => state.productList
   );
 
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = useSelector((state) => state.productDelete);
+
   const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
@@ -25,10 +31,11 @@ const ProductListPage = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
+      dispatch(deleteProduct(id));
     }
   };
 
@@ -47,6 +54,9 @@ const ProductListPage = () => {
           </Button>
         </Col>
       </Row>
+
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
 
       {loading ? (
         <Loader />
