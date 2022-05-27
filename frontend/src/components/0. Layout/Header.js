@@ -4,14 +4,11 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 
 import { logout } from "../../actions/userActions";
-// import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
-// import style from "./Header.module.css";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -36,9 +33,7 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <NavDropdown.Item as={Link} to="/profile">
-                    {/* <Nav.Link as={Link} to="/profile"> */}
                     Profile
-                    {/* </Nav.Link> */}
                   </NavDropdown.Item>
 
                   <NavDropdown.Item onClick={logoutHandler}>
@@ -54,21 +49,15 @@ const Header = () => {
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminame">
                   <NavDropdown.Item as={Link} to="/admin/userlist">
-                    {/* <Nav.Link as={Link} to="/profile"> */}
                     Our Users
-                    {/* </Nav.Link> */}
                   </NavDropdown.Item>
 
                   <NavDropdown.Item as={Link} to="/admin/productlist">
-                    {/* <Nav.Link as={Link} to="/profile"> */}
                     Our Products
-                    {/* </Nav.Link> */}
                   </NavDropdown.Item>
 
                   <NavDropdown.Item as={Link} to="/admin/orderlist">
-                    {/* <Nav.Link as={Link} to="/profile"> */}
                     Orders
-                    {/* </Nav.Link> */}
                   </NavDropdown.Item>
                 </NavDropdown>
               )}
