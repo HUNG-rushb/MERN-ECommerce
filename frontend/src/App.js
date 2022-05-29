@@ -20,6 +20,7 @@ import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UsersListPage";
 import EditUserPage from "./pages/EditUserPage";
 import ProductListPage from "./pages/ProductListPage";
+import EditProductPage from "./pages/EditProductPage";
 
 function App() {
   return (
@@ -54,6 +55,10 @@ function App() {
               <Route path="/admin/user/:id/edit" element={<EditUserPage />} />
 
               <Route path="/admin/productlist" element={<ProductListPage />} />
+              <Route
+                path="/admin/product/:id/edit"
+                element={<EditProductPage />}
+              />
             </Routes>
           </Container>
         </main>

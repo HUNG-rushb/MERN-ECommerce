@@ -33,14 +33,13 @@ const createProduct = expressAsyncHandler(async (req, res) => {
   const product = new Product({
     name: "test",
     price: 0,
-
     user: req.user.id,
     image: "/images/sample/jpg",
-    brand: "",
-    category: "",
-    countInStock: "",
+    brand: "Sample Brand",
+    category: "Sample Category",
+    countInStock: 0,
     numReviews: 0,
-    description: "",
+    description: "ehehehe",
   });
 
   const createdProduct = await product.save();
@@ -68,6 +67,7 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
     res.json(updatedProduct);
   } else {
     res.status(404);
+
     throw new Error("Product not found!!!");
   }
 });

@@ -40,7 +40,7 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
-    if (userInfo && userInfo.isAdmin) {
+    if (!userInfo.isAdmin) {
       navigate("/login");
     }
 
