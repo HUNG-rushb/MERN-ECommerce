@@ -74,4 +74,15 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-export { addOrderedItems, getOrderById, updateOrderToPaid, getMyOrders };
+const getOrders = expressAsyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate("user", "id name");
+  res.json(orders);
+});
+
+export {
+  addOrderedItems,
+  getOrderById,
+  updateOrderToPaid,
+  getMyOrders,
+  getOrders,
+};
