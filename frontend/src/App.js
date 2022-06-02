@@ -17,6 +17,7 @@ import ShippingPage from "./pages/ShippingPage";
 import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
+import OrderListPage from "./pages/OrderListPage";
 import UserListPage from "./pages/UsersListPage";
 import EditUserPage from "./pages/EditUserPage";
 import ProductListPage from "./pages/ProductListPage";
@@ -50,6 +51,11 @@ function App() {
               <Route path="/placeorder" element={<PlaceOrderPage />} />
 
               <Route path="/order/:id" element={<OrderPage />} exact />
+              <Route
+                path="/admin/orderlist"
+                element={<OrderListPage />}
+                exact
+              />
 
               <Route path="/admin/userlist" element={<UserListPage />} />
               <Route path="/admin/user/:id/edit" element={<EditUserPage />} />
