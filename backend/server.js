@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
 // import colors from "colors";
+import morgan from "morgan";
 
 import connectDB from "./config/db.js";
 
@@ -12,16 +13,15 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
-// const express = require("express");
-// const cors = require("cors");
-// const dotenv = require("dotenv");
-// const products = require("./data/products");
-
 // Mongoose
 connectDB();
 
 // Express
 const app = express();
+
+if (process.env.NODE_ENV == "development") {
+  app.use(morgan("dev"));
+}
 
 // Enviroment Variable
 dotenv.config();
