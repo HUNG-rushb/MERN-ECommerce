@@ -8,7 +8,8 @@ import Message from "../components/0. Layout/Message.js";
 import Loader from "../components/0. Layout/Loader.js";
 import LoginForm from "../components/Login/LoginForm.js";
 
-import { listProductsDetails } from "../actions/productActions";
+import { listProductsDetails, updateProduct } from "../actions/productActions";
+import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 
 const EditProductPage = () => {
   const dispatch = useDispatch();
@@ -30,22 +31,45 @@ const EditProductPage = () => {
     (state) => state.productDetails
   );
 
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = useSelector((state) => state.productUpdate);
+
   useEffect(() => {
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductsDetails(productId));
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      navigate("/admin/productlist");
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
+      if (!product.name || product._id !== productId) {
+        dispatch(listProductDetails(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+        setDescription(product.description);
+      }
     }
-  }, [productId, product]);
+  }, [productId, product, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        description,
+        countInStock,
+      })
+    );
   };
 
   const uploadFileHandler = async (e) => {
@@ -80,8 +104,8 @@ const EditProductPage = () => {
       <LoginForm>
         <h1>Edit Product</h1>
 
-        {/* {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>} */}
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 
         {loading ? (
           <Loader />

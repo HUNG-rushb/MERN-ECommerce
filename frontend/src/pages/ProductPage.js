@@ -41,8 +41,9 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const { loading, error, product } = useSelector(
+    (state) => state.productDetails
+  );
 
   // console.log(product);
 
