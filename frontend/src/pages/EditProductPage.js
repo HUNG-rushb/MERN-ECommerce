@@ -43,7 +43,7 @@ const EditProductPage = () => {
       navigate("/admin/productlist");
     } else {
       if (!product.name || product._id !== productId) {
-        dispatch(listProductDetails(productId));
+        dispatch(listProductsDetails(productId));
       } else {
         setName(product.name);
         setPrice(product.price);

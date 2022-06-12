@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Home/Product";
@@ -26,14 +28,17 @@ const Home = () => {
 
   // NEW
   const dispatch = useDispatch();
+  const params = useParams();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   // console.log(products);
 
+  const keyword = params.keyword;
+
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <React.Fragment>

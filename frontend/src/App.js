@@ -65,6 +65,8 @@ function App() {
                 path="/admin/product/:id/edit"
                 element={<EditProductPage />}
               />
+
+              <Route path="/search/:keyword" element={<Home />} exact />
             </Routes>
           </Container>
         </main>
