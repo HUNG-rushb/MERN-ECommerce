@@ -18,7 +18,7 @@ import {
 import axios from "axios";
 
 export const listProducts =
-  (keyword = "") =>
+  (keyword = "", pageNumber = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -26,7 +26,7 @@ export const listProducts =
       // const { data } = await axios.get("/api/products");
       // const { data } = await axios.get("http://localhost:2611/api/products");
       const { data } = await axios.get(
-        `http://localhost:2611/api/products?keyword=${keyword}`
+        `http://localhost:2611/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
 
       dispatch({

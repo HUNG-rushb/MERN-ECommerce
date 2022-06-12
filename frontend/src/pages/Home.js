@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Home/Product";
+import Paginate from "../components/Home/Paginate";
 
 // Actions
 import { listProducts } from "../actions/productActions";
@@ -31,14 +32,15 @@ const Home = () => {
   const params = useParams();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   // console.log(products);
 
   const keyword = params.keyword;
+  const pageNumber = params.pageNumber || 1;
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <React.Fragment>
@@ -49,13 +51,21 @@ const Home = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          {products.map((product, index) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} key={index} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row>
+            {products.map((product, index) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} key={index} />
+              </Col>
+            ))}
+          </Row>
+
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ""}
+          />
+        </>
       )}
     </React.Fragment>
   );

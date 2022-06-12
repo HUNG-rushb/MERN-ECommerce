@@ -67,6 +67,12 @@ function App() {
               />
 
               <Route path="/search/:keyword" element={<Home />} exact />
+              <Route path="/page/:pageNumber" element={<Home />} exact />
+              <Route
+                path="/search/:keyword/page/:pageNumber"
+                element={<Home />}
+                exact
+              />
             </Routes>
           </Container>
         </main>
