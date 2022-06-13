@@ -62,6 +62,11 @@ function App() {
 
               <Route path="/admin/productlist" element={<ProductListPage />} />
               <Route
+                path="/admin/productlist/:pageNumber"
+                element={<ProductListPage />}
+                exact
+              />
+              <Route
                 path="/admin/product/:id/edit"
                 element={<EditProductPage />}
               />

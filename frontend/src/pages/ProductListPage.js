@@ -50,9 +50,16 @@ const ProductListPage = () => {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts("", pageNumber));
     }
-  }, [dispatch, userInfo, successDelete, successCreate, createdProduct]);
+  }, [
+    dispatch,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+    pageNumber,
+  ]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -132,11 +139,7 @@ const ProductListPage = () => {
             </tbody>
           </Table>
 
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ""}
-          />
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>
