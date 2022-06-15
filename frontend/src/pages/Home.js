@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Home/Product";
 import Paginate from "../components/Home/Paginate";
+import ProductCarousel from "../components/Home/ProductCarousel";
 
 // Actions
 import { listProducts } from "../actions/productActions";
@@ -44,6 +45,14 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to="/" className="btn btn-light">
+          Go Back
+        </Link>
+      )}
+
       <h1>Latest Product</h1>
 
       {loading ? (
