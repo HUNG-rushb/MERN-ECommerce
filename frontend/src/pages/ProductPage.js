@@ -11,6 +11,7 @@ import {
   ListGroupItem,
   Form,
 } from "react-bootstrap";
+import Meta from "../components/0. Layout/Meta";
 
 // Actions
 import { listProductsDetails } from "../actions/productActions";
@@ -68,91 +69,97 @@ const ProductPage = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid></Image>
-          </Col>
-          <Col md={3}>
-            <ListGroup>
-              <ListGroup.Item variant="flush">
-                <h2>{product.name}</h2>
-              </ListGroup.Item>
+        <>
+          <Meta title={product.name} />
 
-              <ListGroup.Item>
-                <Rating
-                  value={product.rating}
-                  text={` ${product.numReviews} reviews`}
-                ></Rating>
-              </ListGroup.Item>
-
-              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-
-              <ListGroup.Item>
-                Description: ${product.description}
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-
-          <Col md={3}>
-            <Card>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Price: </Col>
-                    <Col>
-                      <strong>${product.price}</strong>
-                    </Col>
-                  </Row>
+          <Row>
+            <Col md={6}>
+              <Image src={product.image} alt={product.name} fluid></Image>
+            </Col>
+            <Col md={3}>
+              <ListGroup>
+                <ListGroup.Item variant="flush">
+                  <h2>{product.name}</h2>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <Row>
-                    <Col>Status: </Col>
-                    <Col>
-                      {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
-                    </Col>
-                  </Row>
+                  <Rating
+                    value={product.rating}
+                    text={` ${product.numReviews} reviews`}
+                  ></Rating>
                 </ListGroup.Item>
 
-                {product.countInStock > 0 && (
-                  <ListGroupItem>
-                    <Row>
-                      <Col>Quantity</Col>
-                      <Col>
-                        <Form.Control
-                          as="select"
-                          value={qty}
-                          onChange={(e) => {
-                            setQty(e.target.value);
-                          }}
-                        >
-                          {[...Array(product.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
-                        </Form.Control>
-                      </Col>
-                    </Row>
-                  </ListGroupItem>
-                )}
+                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
 
                 <ListGroup.Item>
-                  <Button
-                    className="btn btn-block"
-                    type="button"
-                    disabled={product.countInStock === 0}
-                    onClick={addToCartHandler}
-                  >
-                    {product.countInStock === 0
-                      ? "Gonna Be In Stock Soon"
-                      : "Add To Cart"}
-                  </Button>
+                  Description: ${product.description}
                 </ListGroup.Item>
               </ListGroup>
-            </Card>
-          </Col>
-        </Row>
+            </Col>
+
+            <Col md={3}>
+              <Card>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Price: </Col>
+                      <Col>
+                        <strong>${product.price}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Status: </Col>
+                      <Col>
+                        {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+
+                  {product.countInStock > 0 && (
+                    <ListGroupItem>
+                      <Row>
+                        <Col>Quantity</Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => {
+                              setQty(e.target.value);
+                            }}
+                          >
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroupItem>
+                  )}
+
+                  <ListGroup.Item>
+                    <Button
+                      className="btn btn-block"
+                      type="button"
+                      disabled={product.countInStock === 0}
+                      onClick={addToCartHandler}
+                    >
+                      {product.countInStock === 0
+                        ? "Gonna Be In Stock Soon"
+                        : "Add To Cart"}
+                    </Button>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          </Row>
+        </>
       )}
     </React.Fragment>
   );

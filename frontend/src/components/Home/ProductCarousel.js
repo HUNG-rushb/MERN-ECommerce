@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Carousel, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "./Loader";
-import Message from "./Message";
-import { listTopProducts } from "../actions/productActions";
+import Loader from "../0. Layout/Loader";
+import Message from "../0. Layout/Message";
+import { listTopRatedProducts } from "../../actions/productActions";
 
 const ProductCarousel = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const ProductCarousel = () => {
   );
 
   useEffect(() => {
-    dispatch(listTopProducts());
+    dispatch(listTopRatedProducts());
   }, [dispatch]);
 
   return loading ? (

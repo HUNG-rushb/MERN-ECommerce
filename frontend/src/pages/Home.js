@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
+
 import Product from "../components/Home/Product";
 import Paginate from "../components/Home/Paginate";
 import ProductCarousel from "../components/Home/ProductCarousel";
+import Meta from "../components/0. Layout/Meta";
 
 // Actions
 import { listProducts } from "../actions/productActions";
@@ -45,6 +47,8 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      <Meta />
+
       {!keyword ? (
         <ProductCarousel />
       ) : (
