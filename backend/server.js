@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+
 import path from "path";
 // import colors from "colors";
 import morgan from "morgan";
@@ -13,6 +14,9 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
+// Enviroment Variable
+dotenv.config();
+
 // Mongoose
 connectDB();
 
@@ -22,9 +26,6 @@ const app = express();
 if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
 }
-
-// Enviroment Variable
-dotenv.config();
 
 // CORS
 app.use(cors());

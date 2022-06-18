@@ -41,11 +41,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     const body = { name, email, password };
 
-    const { data } = await axios.post(
-      "http://localhost:2611/api/users",
-      body,
-      config
-    );
+    const { data } = await axios.post("/api/users", body, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -83,11 +79,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const body = { email, password };
 
-    const { data } = await axios.post(
-      "http://localhost:2611/api/users/login",
-      body,
-      config
-    );
+    const { data } = await axios.post("/api/users/login", body, config);
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -134,7 +126,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     // const body = { name, email, password };
 
     const { data } = await axios.get(
-      `http://localhost:2611/api/users/${id}`,
+      `/api/users/${id}`,
       // body,
       config
     );
@@ -173,11 +165,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     const body = { user };
 
-    const { data } = await axios.put(
-      `http://localhost:2611/api/users/profile`,
-      body,
-      config
-    );
+    const { data } = await axios.put(`/api/users/profile`, body, config);
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,
@@ -211,7 +199,7 @@ export const listUsers = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:2611/api/users`,
+      `/api/users`,
 
       config
     );
@@ -248,7 +236,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     };
 
     await axios.delete(
-      `http://localhost:2611/api/users/${id}`,
+      `/api/users/${id}`,
 
       config
     );
@@ -284,11 +272,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(
-      `http://localhost:2611/api/users/${user._id}`,
-      user,
-      config
-    );
+    const { data } = await axios.delete(`/api/users/${user._id}`, user, config);
 
     dispatch({
       type: USER_UPDATE_SUCCESS,
