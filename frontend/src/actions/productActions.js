@@ -20,7 +20,8 @@ import {
 } from "../constants/productConstants.js";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:2611";
+// axios.defaults.baseURL = "http://localhost:2611";
+axios.defaults.baseURL = "https://hungmernshop.herokuapp.com/";
 
 export const listProducts =
   (keyword = "", pageNumber = "") =>
