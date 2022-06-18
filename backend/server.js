@@ -52,11 +52,6 @@ app.use(cors());
 // JSON
 app.use(express.json());
 
-// API
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
 // Routes
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
@@ -67,10 +62,8 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 
-// Error
-
-const _dirname = path.resolve();
-app.use("/uploads", express.static(path.join(_dirname, "/uploads")));
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
