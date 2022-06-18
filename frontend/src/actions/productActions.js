@@ -19,9 +19,6 @@ import {
   PRODUCT_TOP_FAIL,
 } from "../constants/productConstants.js";
 import axios from "axios";
-// import dotenv from "dotenv";
-
-// dotenv.config();
 
 axios.defaults.baseURL = "http://localhost:2611";
 

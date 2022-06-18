@@ -1,5 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import Product from "../models/ProductModel.js";
+import Product from "../models/productModel.js";
 
 const getProducts = expressAsyncHandler(async (req, res) => {
   const pageSize = 6;
